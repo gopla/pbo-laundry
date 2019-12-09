@@ -5,34 +5,25 @@
  */
 package backend;
 
-import frontend.*;
+import frontend.AdminMain;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
 
 /**
  *
  * @author Gopla
  */
-public class Kasir extends User{
-    private int gaji;
+public class Admin extends User{
 
-    public Kasir(String nama, String username, String password, String role, int gaji) {
+    public Admin(String nama, String username, String password, String role) {
         super.nama = nama;
         super.username = username;
         super.password = password;
         super.role = role;
-        this.gaji = gaji;
     }
 
-    public Kasir() {
-    }
-    
-    public int getGaji() {
-        return gaji;
-    }
-
-    public void setGaji(int gaji) {
-        this.gaji = gaji;
+    public Admin() {
     }
 
     public int getId_user() {
@@ -45,14 +36,6 @@ public class Kasir extends User{
 
     public String getNama() {
         return nama;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public void setNama(String nama) {
@@ -74,74 +57,78 @@ public class Kasir extends User{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
     
-    public Kasir getById(int key){
-        Kasir kasir = new Kasir();
+    public Admin getById(int key){
+        Admin admin = new Admin();
         ResultSet rs = DBHelper.selectQuery("SELECT * FROM user " +
                                             "WHERE id_user = '"+ key +"'");
         try {
             while (rs.next()) {
-                kasir = new Kasir();
-                kasir.setId_user(rs.getInt("id_user"));
-                kasir.setNama(rs.getString("nama"));
-                kasir.setGaji(rs.getInt("gaji"));
-                kasir.setUsername(rs.getString("usernmae"));
-                kasir.setPassword(rs.getString("password"));
-                kasir.setRole(rs.getString("role"));
+                admin = new Admin();
+                admin.setId_user(rs.getInt("id_user"));
+                admin.setNama(rs.getString("nama"));
+                admin.setUsername(rs.getString("usernmae"));
+                admin.setPassword(rs.getString("password"));
+                admin.setRole(rs.getString("role"));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return kasir;
+        return admin;
     }
     
-    public ArrayList<Kasir> getAll(){
-        ArrayList<Kasir> listKasir = new ArrayList();
+    public ArrayList<Admin> getAll(){
+        ArrayList<Admin> listAdmin = new ArrayList();
         ResultSet rs = DBHelper.selectQuery("SELECT * FROM user");
         try {
             while (rs.next()) {
-                Kasir kasir = new Kasir();
-                kasir.setId_user(rs.getInt("id_user"));
-                kasir.setNama(rs.getString("nama"));
-                kasir.setGaji(rs.getInt("gaji"));
-                kasir.setUsername(rs.getString("usernmae"));
-                kasir.setPassword(rs.getString("password"));
-                kasir.setRole(rs.getString("role"));
-                listKasir.add(kasir);
+                Admin admin = new Admin();
+                admin.setId_user(rs.getInt("id_user"));
+                admin.setNama(rs.getString("nama"));
+                admin.setUsername(rs.getString("usernmae"));
+                admin.setPassword(rs.getString("password"));
+                admin.setRole(rs.getString("role"));
+                listAdmin.add(admin);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listKasir;
+        return listAdmin;
     }
     
-    public ArrayList<Kasir> search(String key){
-        ArrayList<Kasir> listKasir = new ArrayList();
+    public ArrayList<Admin> search(String key){
+        ArrayList<Admin> listAdmin = new ArrayList();
         ResultSet rs = DBHelper.selectQuery("SELECT * FROM user WHERE " +
                                             "nama like '%"+ key +"%' OR " +
                                             "username like '%"+ key +"%'");
         try {
             while (rs.next()) {
-                Kasir kasir = new Kasir();
-                kasir.setId_user(rs.getInt("id_user"));
-                kasir.setNama(rs.getString("nama"));
-                kasir.setGaji(rs.getInt("gaji"));
-                kasir.setUsername(rs.getString("usernmae"));
-                kasir.setPassword(rs.getString("password"));
-                kasir.setRole(rs.getString("role"));
-                listKasir.add(kasir);
+                Admin admin = new Admin();
+                admin.setId_user(rs.getInt("id_user"));
+                admin.setNama(rs.getString("nama"));
+                admin.setUsername(rs.getString("usernmae"));
+                admin.setPassword(rs.getString("password"));
+                admin.setRole(rs.getString("role"));
+                listAdmin.add(admin);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listKasir;
+        return listAdmin;
     }
     
     public void save(){
         if (getById(id_user).getId_user() == 0) {
-            String SQL = "INSERT INTO user (nama, gaji, username, password, role) VALUES ("
+            String SQL = "INSERT INTO user (nama, username, password, role) VALUES ("
                         + " '"+this.nama+"', "
-                        + " '"+this.gaji+"',"
                         + " '"+this.username+"', "
                         + " '"+this.password+"', "
                         + " '"+this.role+"' "
@@ -149,8 +136,7 @@ public class Kasir extends User{
             this.id_user = DBHelper.insertQueryGetId(SQL);
         }else{
             String SQL = "UPDATE user SET "
-                        + " nama = '"+this.nama+"', "
-                        + " gaji = '"+this.gaji+"', "
+                        + " nama = '"+this.nama+"', "   
                         + " username = '"+this.username+"', "
                         + " password = '"+this.password+"', "
                         + " role = '"+this.role+"', "
@@ -163,7 +149,8 @@ public class Kasir extends User{
         String SQL = "DELETE FROM user WHERE id_user = '"+this.id_user+"'";
         DBHelper.executeQuery(SQL);
     }
-    
+   
+
     @Override
     public void login(String uname, String pass) {
         String SQL = "SELECT * FROM user WHERE username = '"+ uname +"'" +
@@ -173,8 +160,8 @@ public class Kasir extends User{
             while (rs.next()) { 
                 setId_user(rs.getInt("id_user"));
                 setRole(rs.getString("role"));
-                if (rs.getString("role").equals("kasir")) {
-                    new KasirMain(getId_user(), getRole()).setVisible(true);
+                if (rs.getString("role").equals("admin")) {
+                    new AdminMain(getId_user(), getRole()).setVisible(true);
                 }else{
                     System.out.println("halo");
                 }
