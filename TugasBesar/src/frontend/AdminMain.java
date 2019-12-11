@@ -35,12 +35,22 @@ public class AdminMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuTransaksi = new javax.swing.JMenu();
+        formUser = new javax.swing.JMenu();
         menuLogout = new javax.swing.JMenu();
         idUserHidden = new javax.swing.JMenu();
         roleUser = new javax.swing.JMenu();
+
+        jMenu1.setText("jMenu1");
+
+        jMenu2.setText("jMenu2");
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +77,14 @@ public class AdminMain extends javax.swing.JFrame {
             }
         });
         jMenuBar1.add(menuTransaksi);
+
+        formUser.setText("Form User");
+        formUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formUserMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(formUser);
 
         menuLogout.setText("Logout");
         menuLogout.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -113,6 +131,11 @@ public class AdminMain extends javax.swing.JFrame {
         new FormLogin().setVisible(true);
     }//GEN-LAST:event_menuLogoutMouseClicked
 
+    private void formUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formUserMouseClicked
+        // TODO add your handling code here:
+        new FormUser().setVisible(true);
+    }//GEN-LAST:event_formUserMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -150,8 +173,12 @@ public class AdminMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu formUser;
     private javax.swing.JMenu idUserHidden;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu menuLogout;
     private javax.swing.JMenu menuTransaksi;

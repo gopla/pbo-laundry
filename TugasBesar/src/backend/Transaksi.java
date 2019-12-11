@@ -181,7 +181,7 @@ public class Transaksi implements Tax{
 
     @Override
     public int getHargaPajak() {
-        return total + (total * 2 / 100);
+        return total + (total * 5 / 100);
     }
     
     

@@ -85,7 +85,7 @@ public class Kasir extends User{
                 kasir.setId_user(rs.getInt("id_user"));
                 kasir.setNama(rs.getString("nama"));
                 kasir.setGaji(rs.getInt("gaji"));
-                kasir.setUsername(rs.getString("usernmae"));
+                kasir.setUsername(rs.getString("username"));
                 kasir.setPassword(rs.getString("password"));
                 kasir.setRole(rs.getString("role"));
             }
@@ -104,7 +104,7 @@ public class Kasir extends User{
                 kasir.setId_user(rs.getInt("id_user"));
                 kasir.setNama(rs.getString("nama"));
                 kasir.setGaji(rs.getInt("gaji"));
-                kasir.setUsername(rs.getString("usernmae"));
+                kasir.setUsername(rs.getString("username"));
                 kasir.setPassword(rs.getString("password"));
                 kasir.setRole(rs.getString("role"));
                 listKasir.add(kasir);
@@ -126,7 +126,7 @@ public class Kasir extends User{
                 kasir.setId_user(rs.getInt("id_user"));
                 kasir.setNama(rs.getString("nama"));
                 kasir.setGaji(rs.getInt("gaji"));
-                kasir.setUsername(rs.getString("usernmae"));
+                kasir.setUsername(rs.getString("username"));
                 kasir.setPassword(rs.getString("password"));
                 kasir.setRole(rs.getString("role"));
                 listKasir.add(kasir);
