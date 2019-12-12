@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class Transaksi implements Tax{
     private int id_transaksi, id_user, berat, total;
     private String jenisCuci, tglTransaksi, tglKembali, nama;
+    Pelanggan namaPelanggan;
 
     public String getNama() {
         return nama;
@@ -25,6 +26,8 @@ public class Transaksi implements Tax{
     }
 
     public Transaksi(int id_transaksi, int id_user, int berat, int total, String jenisCuci, String tglTransaksi, String tglKembali, String nama) {
+        namaPelanggan.setNamaPelanggan(nama);
+        
         this.id_transaksi = id_transaksi;
         this.id_user = id_user;
         this.berat = berat;
@@ -32,7 +35,7 @@ public class Transaksi implements Tax{
         this.jenisCuci = jenisCuci;
         this.tglTransaksi = tglTransaksi;
         this.tglKembali = tglKembali;
-        this.nama = nama;
+        this.nama = namaPelanggan.getNamaPelanggan();
     }
 
     public Transaksi() {
